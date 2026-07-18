@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/rev-ledger/"
+title = "Revenue Ledger"
+version = "1.0.0"
+id = "artifacts/rev-ledger"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/rev-ledger/" ]
+localPort = 19042
+
+[services.development]
+run = "pnpm --filter @workspace/rev-ledger run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/rev-ledger", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/rev-ledger/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19042"
+BASE_PATH = "/rev-ledger/"

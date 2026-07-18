@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  background: #0b0e11;
+  color: #e8eaed;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input:focus,
+button:focus-visible {
+  outline: 1px solid #3ecf8e;
+  outline-offset: 0;
+}
+
+input::placeholder {
+  color: #4a5361;
+}
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a313b;
+  border-radius: 3px;
+}
