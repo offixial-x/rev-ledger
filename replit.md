@@ -44,6 +44,7 @@ A Telegram Mini App for tracking daily revenue, COGS, and operating expenses. Da
 - GitHub Pages URL: `https://offixial-x.github.io/rev-ledger/`
 - Telegram bot: `@myrevenue_tracker_bot`
 - Bot menu button text: `Open App`
+- GitHub repo visibility: `public`
 
 ## Gotchas
 
