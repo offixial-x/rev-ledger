@@ -1,45 +1,57 @@
-# [Project name]
+# Revenue Ledger
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A Telegram Mini App for tracking daily revenue, COGS, and operating expenses. Data is stored in Telegram CloudStorage when opened inside Telegram, or in `localStorage` when previewed in a browser.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/rev-ledger run dev` — run the app in Replit preview
+- `pnpm --filter @workspace/rev-ledger run build` — build the static GitHub Pages files
 - `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+- The static output lives in `artifacts/rev-ledger/dist`
 
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+- React 19 + Vite 7
+- Recharts for the trend chart, Lucide React for icons
+- Telegram Web App SDK for CloudStorage and the mini-app container
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- Source of truth for the app: `artifacts/rev-ledger/`
+- Page component: `artifacts/rev-ledger/src/pages/RevenueLedger.tsx`
+- Telegram helpers: `artifacts/rev-ledger/src/lib/telegram.ts`
+- GitHub Pages workflow: `.github/workflows/deploy.yml`
+- Deployment guide: `GITHUB_PAGES.md`
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- The app is client-side only so it can be hosted on GitHub Pages without a backend.
+- The Vite base path is set to `/rev-ledger/` to match the GitHub Pages project-site URL.
+- The Telegram bot menu button is configured via the Bot API to open the GitHub Pages URL.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- Add daily products with revenue and COGS.
+- Record operating expenses per day (rent, salaries, marketing, utilities, other).
+- See totals, gross/net profit, margins, and a trend chart.
+- Data persists across sessions inside Telegram CloudStorage.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- GitHub username: `offixial-x`
+- GitHub repository name: `rev-ledger`
+- GitHub Pages URL: `https://offixial-x.github.io/rev-ledger/`
+- Telegram bot: `@myrevenue_tracker_bot`
+- Bot menu button text: `Open App`
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- The repo must be named exactly `rev-ledger` so the Vite base path matches the GitHub Pages URL.
+- In GitHub Pages settings, choose **Source: GitHub Actions**, not the default branch deploy.
+- The first push to `main` triggers the deploy workflow.
 
 ## Pointers
 
-- See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details
+- See `GITHUB_PAGES.md` for the full deploy steps.
+- See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
